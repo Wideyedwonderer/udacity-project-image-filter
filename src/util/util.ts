@@ -13,7 +13,7 @@ export async function filterImageFromURL(inputURL: string): Promise<string> {
     try {
       const photo = await Jimp.read(inputURL);
       const outpath =
-        "/tmp/filtered." + Math.floor(Math.random() * 2000) + ".jpg";
+        "/tmp/filtered." + Math.floor(Math.random() * 20000) + ".jpg";
       await photo
         .resize(256, 256) // resize
         .quality(60) // set JPEG quality
@@ -36,4 +36,7 @@ export async function deleteLocalFiles(files: Array<string>) {
   for (let file of files) {
     fs.unlinkSync(file);
   }
+}
+export function isValidImageUrl(url: string): boolean {
+  return(url.match(/\.(jpeg|jpg)$/) != null);
 }
