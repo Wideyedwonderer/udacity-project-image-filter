@@ -1,6 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-require('dotenv').config();
+if(process.env.NODE_ENV === 'dev') {
+  require('dotenv').config();
+}
 import {filterImageFromURL, deleteLocalFiles, isValidImageUrl} from './util/util';
 import { requireAuth } from './util/auth.util';
 
@@ -15,7 +17,7 @@ import { requireAuth } from './util/auth.util';
   // Use the body parser middleware for post requests
   app.use(bodyParser.json());
 
-  app.get( "/filteredimage", requireAuth, async ( req, res ) => {
+  app.get( "/filteredImage", requireAuth, async ( req, res ) => {
     const imageUrl: string = req.query['imageUrl'];
 
     if(!imageUrl) {
@@ -41,7 +43,9 @@ import { requireAuth } from './util/auth.util';
     }
   } );
   
-
+app.get('/', (req, res) => {
+  res.send( "image proccesing on /filteredImage" );
+})
   // Start the Server
   app.listen( port, () => {
       console.log( `server running http://localhost:${ port }` );
