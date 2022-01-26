@@ -1,8 +1,13 @@
 Authorization instructions
 
-Register here: http://udacity-dev.us-east-1.elasticbeanstalk.com/api/v0/users/auth
+1. Register
 
-Login here to get the jwt token: http://udacity-dev.us-east-1.elasticbeanstalk.com/api/v0/users/auth/login
+POST {email, password} to
 
-(For register/login use an {email, password} object)
+http://udacity-dev.us-east-1.elasticbeanstalk.com/api/v0/users/auth
 
+2. Login 
+
+POST {email, password} to
+
+http://udacity-dev.us-east-1.elasticbeanstalk.com/api/v0/users/auth/login
